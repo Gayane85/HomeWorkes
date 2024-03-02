@@ -1,0 +1,120 @@
+/// some()
+function isSome(callback, arr){
+   for(let i=0; i<arr.length; i++){
+			if(callback(arr[i],i,arr)){
+			return true
+    }
+	}
+return false
+}
+
+//console.log(arr.some(item=>item>0))
+let arr = [1, 2, 3, 4, 5]
+isSome(function(item,index,arr){
+    if(item<0){
+        return true
+    }
+    return false
+},arr)
+
+
+//map()
+function myMap(callback, arr){
+ let newArr =[];
+ for(let i=0; i<arr.length; i++){
+    newArr.push(callback(arr[i],i,arr))
+ }
+		return newArr
+}
+let arr=[1,2,3,-1]
+console.log(arr.map(item=>item**2)) //[1,4,9,1]
+
+
+myMap(function(item,index,arr){
+return item**2
+},arr)  ////[1,4,9,1]
+
+
+///forEach()
+
+function myForEach(callback, arr){
+	for(let i=0; i<arr.length; i++){
+   callback(arr[i],i, arr)
+  }
+}
+
+let arr1= [11,12,13,14]
+myForEach(function(item,index,arr){
+		console.log(item,index)
+},arr1)
+
+
+///filter()
+function myFilter(callback, arr){
+ let filtered =[];
+ 		for(let i=0; i<arr.length; i++){
+ 			if(callback(arr[i],i,arr)){
+				 filtered.push(callback(arr[i],i,arr))
+ 	}
+   
+ }
+		return filtered
+}
+
+let arr2=[2,3,4,5,16]
+console.log(myFilter(function(item){
+  if(item%2==0)
+  return item
+}, arr2))      //[2,4,16]
+
+
+
+///find()
+function myFind(callback,arr){
+ for(let i=0; i<arr.length; i++){
+ 	if(callback(arr[i],i,arr)){
+ 			return arr[i]
+ 		}
+ }
+ 	return undefined
+}
+let arr3 = [1,2,3,-4,-5]
+myFind(function(item,index,arr){
+ return item<0
+},arr3)     //-4
+
+
+
+
+/// findLast()
+function myFindLast(callback,arr){
+ for(let i=arr.length-1; i>=0; i--){
+ if(callback(arr[i],i,arr)){
+   return arr[i]
+ }
+ }
+ return undefined
+}
+let arr5=[1,2,3,4]
+myFindLast(function(item,index,arr){
+return item%2==0
+},arr5)     ///4
+
+
+
+
+
+///findIndex()
+
+function myFindIndex(callback,arr){
+ for(let i=0; i<arr.length; i++){
+  if(callback(arr[i],i,arr)){
+  return i
+  }
+ }
+ return -1
+}
+let arr4 = [11,12,13,14]
+myFindIndex(function (item,index,arr){
+return item>12
+},arr4)     // 2
